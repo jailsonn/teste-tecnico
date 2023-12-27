@@ -1,5 +1,10 @@
 import { useEffect } from "react";
 import api from "../../services/api";
+import Header from "../../components/Header";
+import { Container } from "../../components/Header/styles";
+import { Container2 } from "./styles";
+import Card from "../../components/Card";
+
 
 // pagina Home
 function Home() {
@@ -8,19 +13,22 @@ function Home() {
     async function loadData() {
       const {
         data: { docs },
-      } = await api.get("movie");
+      } = await api.get("movie")
 
-      console.log(docs);
+      console.log(docs)
     }
 
-    loadData();
-  }, []);
+    loadData()
+  }, [])
 
   return (
-    <div>
+    <Container2>
+      <Header />
+
+      <Card />
       <h1>Hello Moviesss</h1>
-    </div>
-  );
+    </Container2>
+  )
 }
 
 export default Home;
