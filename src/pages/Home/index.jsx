@@ -8,6 +8,7 @@ import Card from "../../components/Card";
 function Home() {
   // usar um estado
   const [movies, setMovies] = useState();
+  const [filteredMovies, setFilteredMovies] = useState();
 
   // Chamada a api
   useEffect(() => {
@@ -17,6 +18,7 @@ function Home() {
       } = await api.get("movie");
 
       setMovies(docs);
+      setFilteredMovies(docs)
       console.log(docs);
     }
 
@@ -25,11 +27,11 @@ function Home() {
 
   return (
     <Container2>
-      <Header />
+      <Header movies={movies} setFilteredMovies={setFilteredMovies} />
 
     <ContainerItems>
-      {movies &&
-        movies.map((movie) => <Card movieData={movie} key={movie._id} />)}
+      {filteredMovies &&
+        filteredMovies.map((movie) => <Card movieData={movie} key={movie._id} />)}
     </ContainerItems>
     </Container2>
   );
